@@ -9,26 +9,36 @@
 <body>
   <header>
     <nav>
-      <h1 class="logo">MyWebsite</h1>
+      <div class="logo">
+        <a href="index.html">MyWebsite</a>
+      </div>
+
       <ul id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="services.html" class="active">Services</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <button id="menu-toggle">☰</button>
+      
+      <button id="menu-toggle" 
+              aria-controls="nav-links" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation menu">
+        ☰
+      </button>
     </nav>
   </header>
 
   <main>
-    <section>
-      <h2>Our Services</h2>
-      <ul>
+    <section class="page-content">
+      <h1>Our Services</h1>
+      
+      <ul class="service-list">
         <li>Web Design & Development</li>
         <li>Responsive UI/UX</li>
         <li>SEO Optimization</li>
         <li>App Development</li>
-        <li>Ai Intergration</li>
+        <li>AI Integration</li>
       </ul>
     </section>
   </main>
