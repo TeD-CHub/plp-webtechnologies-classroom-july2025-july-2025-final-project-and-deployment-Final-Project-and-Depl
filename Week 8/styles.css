@@ -222,21 +222,25 @@ nav {
 
 .input-container {
   position: relative;
-  /* Added to contain the icon properly when textarea height changes */
-  display: block; 
 }
 
-/* FIX: Adjusted top and transform */
+/* THIS RULE IS FOR ICONS IN *INPUTS* ONLY */
 .form-icon {
   position: absolute;
   left: 10px;
-  top: 0.75rem; /* Adjusted to align with text */
-  transform: translateY(0%); /* Removed translateY(-50%) */
+  top: 50%;
+  transform: translateY(-50%);
   color: #777;
   font-size: 1.1rem;
-  /* Ensure icon doesn't block input interaction */
-  pointer-events: none; 
+  pointer-events: none; /* Allows clicking 'through' the icon */
 }
+
+/* THIS IS THE NEW RULE FOR THE *TEXTAREA* ICON */
+.form-icon-textarea {
+  top: 0.8rem; /* Position at the top */
+  transform: none; /* Reset the vertical centering */
+}
+
 
 .form-group input,
 .form-group textarea {
@@ -248,20 +252,16 @@ nav {
   font-family: inherit;
 }
 
-/* FIX: Increased padding-left to give more space for the icon */
+/* THIS RULE IS FOR *INPUTS* ONLY */
 .input-with-icon {
-  padding-left: 3rem; /* Adjusted for better spacing */
+  padding-left: 3rem; /* Make space for the icon */
 }
 
+/* THIS IS THE NEW RULE FOR THE *TEXTAREA* */
 .form-group textarea {
   resize: vertical;
+  padding-left: 3rem; /* Make space for the icon */
 }
-
-/* Adjust icon position specifically for textarea */
-.form-group textarea.input-with-icon + .form-icon {
-  top: 0.75rem; /* Align with the top of the textarea */
-}
-
 
 #formMessage {
   margin-top: 1rem;
@@ -308,13 +308,10 @@ footer {
   .hero h1, .page-content h1 {
     font-size: 2rem;
   }
-
-  /* Adjust form icon for smaller screens if needed */
-  .form-icon {
-    font-size: 1rem; /* Slightly smaller icon on mobile */
-    left: 8px;
-  }
-  .input-with-icon {
-    padding-left: 2.5rem; /* Adjust padding for smaller icons */
+  
+  /* Adjust form icon for smaller screens */
+  .input-with-icon,
+  .form-group textarea {
+    padding-left: 2.75rem; /* Adjust padding for smaller icons */
   }
 }
