@@ -4,6 +4,8 @@
   --secondary-color: #f4f4f4;
   --font-color: #333;
   --bg-color: #ffffff;
+  --success-color: #28a745;
+  --error-color: #dc3545;
   --container-width: 90%;
   --max-width: 1100px;
 }
@@ -21,6 +23,15 @@ body {
   line-height: 1.6;
   background-color: var(--bg-color);
   color: var(--font-color);
+  /* Ensures footer stays at the bottom */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  /* Pushes footer down */
+  flex-grow: 1;
 }
 
 a {
@@ -71,10 +82,18 @@ nav {
 #nav-links li a {
   font-weight: 500;
   transition: color 0.3s ease;
+  padding: 0.25rem 0;
 }
 
 #nav-links li a:hover {
-  color: #007bff; /* A slightly brighter blue for hover */
+  color: #007bff;
+}
+
+/* Styles the 'active' link in the navigation */
+#nav-links li a.active {
+  font-weight: 700;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
 }
 
 #menu-toggle {
@@ -83,18 +102,17 @@ nav {
   border: none;
   font-size: 1.8rem;
   cursor: pointer;
+  color: var(--font-color);
 }
 
-/* === 3. Main Content (Hero) === */
-main {
-  padding: 2rem 0;
-}
+/* === 3. Main Content (All Pages) === */
 
+/* --- Hero (index.html) --- */
 .hero {
   display: grid;
   place-items: center;
   text-align: center;
-  min-height: 60vh; /* Give it some height */
+  min-height: 60vh;
   width: var(--container-width);
   max-width: var(--max-width);
   margin: 0 auto;
@@ -110,16 +128,99 @@ main {
   color: #555;
 }
 
+/* --- Page Content (about.html, services.html, contact.html) --- */
+.page-content {
+  width: var(--container-width);
+  max-width: var(--max-width);
+  margin: 2rem auto; /* Added top/bottom margin */
+}
+
+.page-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+}
+
+.page-content p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* --- Service List (services.html) --- */
+.service-list {
+  list-style-type: '✓'; /* Fun checkmark bullet */
+  padding-left: 2rem;
+}
+
+.service-list li {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+/* --- Contact Form (contact.html) --- */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+form button[type="submit"] {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Styles for the JS-powered form message */
+#formMessage {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+/* Note: The JS file sets the color, but we can set defaults */
+#formMessage.success { color: var(--success-color); }
+#formMessage.error { color: var(--error-color); }
+
+
 /* === 4. Footer === */
 footer {
   text-align: center;
   padding: 2rem;
   background-color: var(--secondary-color);
-  margin-top: 2rem;
+  margin-top: 2rem; /* Pushes it away from content */
   color: #777;
 }
 
-/* === 5. Responsive (Mobile-First) === */
+/* === 5. Responsive (Mobile) === */
 @media (max-width: 768px) {
   .logo {
     font-size: 1.3rem;
@@ -144,7 +245,7 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  /* This class would be toggled with JavaScript */
+  /* This class is toggled with JavaScript */
   #nav-links.active {
     display: flex;
   }
@@ -153,7 +254,7 @@ footer {
     display: block; /* Show the hamburger button */
   }
 
-  .hero h1 {
+  .hero h1, .page-content h1 {
     font-size: 2rem;
   }
 }
