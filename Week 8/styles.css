@@ -104,7 +104,7 @@ nav {
   color: var(--font-color);
 }
 
-/* === 3. Reusable Components (NEW) === */
+/* === 3. Reusable Components === */
 .button {
   display: inline-block;
   background-color: var(--primary-color);
@@ -150,7 +150,7 @@ nav {
 .hero p {
   font-size: 1.1rem;
   color: #555;
-  margin-bottom: 2rem; /* Added space for the button */
+  margin-bottom: 2rem;
 }
 
 /* --- Page Content (about, services, contact) --- */
@@ -174,7 +174,7 @@ nav {
 
 /* --- Text Block (about.html) --- */
 .text-block {
-  max-width: 800px; /* Improves readability */
+  max-width: 800px;
 }
 
 /* --- Service Grid (services.html) --- */
@@ -220,19 +220,22 @@ nav {
   margin-bottom: 0.5rem;
 }
 
-/* NEW container for icon */
 .input-container {
   position: relative;
+  /* Added to contain the icon properly when textarea height changes */
+  display: block; 
 }
 
-/* NEW icon style */
+/* FIX: Adjusted top and transform */
 .form-icon {
   position: absolute;
   left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0.75rem; /* Adjusted to align with text */
+  transform: translateY(0%); /* Removed translateY(-50%) */
   color: #777;
   font-size: 1.1rem;
+  /* Ensure icon doesn't block input interaction */
+  pointer-events: none; 
 }
 
 .form-group input,
@@ -245,14 +248,20 @@ nav {
   font-family: inherit;
 }
 
-/* NEW padding for input */
+/* FIX: Increased padding-left to give more space for the icon */
 .input-with-icon {
-  padding-left: 2.5rem; /* Make space for the icon */
+  padding-left: 3rem; /* Adjusted for better spacing */
 }
 
 .form-group textarea {
   resize: vertical;
 }
+
+/* Adjust icon position specifically for textarea */
+.form-group textarea.input-with-icon + .form-icon {
+  top: 0.75rem; /* Align with the top of the textarea */
+}
+
 
 #formMessage {
   margin-top: 1rem;
@@ -298,5 +307,14 @@ footer {
 
   .hero h1, .page-content h1 {
     font-size: 2rem;
+  }
+
+  /* Adjust form icon for smaller screens if needed */
+  .form-icon {
+    font-size: 1rem; /* Slightly smaller icon on mobile */
+    left: 8px;
+  }
+  .input-with-icon {
+    padding-left: 2.5rem; /* Adjust padding for smaller icons */
   }
 }
